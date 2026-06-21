@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    @apply bg-slate-50 text-slate-800 font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-slate-200 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-slate-300; }
+}
+
+@layer components {
+  /* ── Cards ── */
+  .card {
+    @apply bg-white rounded-2xl border border-slate-100 p-5 shadow-card;
+  }
+  .card-hover {
+    @apply card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-brand-500 hover:bg-brand-600 active:bg-brand-700 text-white focus:ring-brand-400 shadow-sm px-4 py-2 text-sm;
+  }
+  .btn-secondary {
+    @apply btn bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 border border-slate-200 focus:ring-slate-300 px-4 py-2 text-sm;
+  }
+  .btn-danger {
+    @apply btn bg-red-500 hover:bg-red-600 active:bg-red-700 text-white focus:ring-red-400 shadow-sm px-4 py-2 text-sm;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent hover:bg-slate-100 text-slate-600 focus:ring-slate-300 px-3 py-2 text-sm;
+  }
+  .btn-icon {
+    @apply btn p-2 rounded-xl;
+  }
+
+  /* ── Inputs ── */
+  .input {
+    @apply w-full border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 bg-white placeholder:text-slate-400
+           focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-brand-400 transition-all duration-150;
+  }
+  .label {
+    @apply block text-sm font-medium text-slate-700 mb-1.5;
+  }
+
+  /* ── Badges ── */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+  .badge-high    { @apply bg-red-50 text-red-700 border border-red-100; }
+  .badge-medium  { @apply bg-amber-50 text-amber-700 border border-amber-100; }
+  .badge-low     { @apply bg-emerald-50 text-emerald-700 border border-emerald-100; }
+  .badge-pending  { @apply bg-slate-100 text-slate-600 border border-slate-200; }
+  .badge-progress { @apply bg-blue-50 text-blue-700 border border-blue-100; }
+  .badge-completed{ @apply bg-emerald-50 text-emerald-700 border border-emerald-100; }
+
+  /* ── Status indicator dot ── */
+  .status-dot-pending   { @apply w-2 h-2 rounded-full bg-slate-400; }
+  .status-dot-progress  { @apply w-2 h-2 rounded-full bg-blue-500 animate-pulse-dot; }
+  .status-dot-completed { @apply w-2 h-2 rounded-full bg-emerald-500; }
+
+  /* ── Tab bar ── */
+  .tab-bar {
+    @apply flex gap-1 bg-slate-100 p-1 rounded-xl w-fit;
+  }
+  .tab {
+    @apply px-4 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 cursor-pointer;
+  }
+  .tab-active {
+    @apply bg-white text-brand-600 shadow-sm;
+  }
+  .tab-inactive {
+    @apply text-slate-500 hover:text-slate-700;
+  }
+
+  /* ── Page header ── */
+  .page-header {
+    @apply flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6;
+  }
+  .page-title {
+    @apply text-2xl font-bold text-slate-900 tracking-tight;
+  }
+  .page-subtitle {
+    @apply text-sm text-slate-500 mt-0.5;
+  }
+
+  /* ── Divider ── */
+  .divider { @apply border-t border-slate-100; }
+
+  /* ── Empty state ── */
+  .empty-state {
+    @apply flex flex-col items-center justify-center py-20 text-center;
+  }
+
+  /* ── Sidebar nav link ── */
+  .nav-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150;
+  }
+  .nav-link-active {
+    @apply bg-brand-50 text-brand-700;
+  }
+  .nav-link-inactive {
+    @apply text-slate-600 hover:bg-slate-50 hover:text-slate-900;
+  }
+}
+
+@layer utilities {
+  .animate-in { animation: fade-in 0.25s ease-out; }
+  .line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
+  .line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+  .glass { @apply bg-white/80 backdrop-blur-sm; }
+}

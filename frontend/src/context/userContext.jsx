@@ -1,0 +1,32 @@
+import { createContext, useState, useEffect } from "react";
+
+export const UserContext = createContext();
+
+const UserProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("taskManagerUser");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  const updateUser = (userData) => {
+    setUser(userData);
+    localStorage.setItem("taskManagerUser", JSON.stringify(userData));
+  };
+
+  const clearUser = () => {
+    setUser(null);
+    localStorage.removeItem("taskManagerUser");
+  };
+
+  return (
+    <UserContext.Provider value={{ user, updateUser, clearUser }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
+
+export default UserProvider;
